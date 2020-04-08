@@ -22,6 +22,20 @@ export class AppComponent {
     this.geoJsonObject = GEOJSON;
     console.log(this.geoJsonObject.features);
   }
+  ngOnInit() {
+    this.markers = [
+      {
+        lng: this.geoJsonObject.features[0].geometry.coordinates[0][0][0],
+        lat: this.geoJsonObject.features[0].geometry.coordinates[0][0][1],
+        label: String(this.geoJsonObject.features[0].properties.id),
+      },
+      {
+        lng: this.geoJsonObject.features[1].geometry.coordinates[0][0][0],
+        lat: this.geoJsonObject.features[1].geometry.coordinates[0][0][1],
+        label: String(this.geoJsonObject.features[1].properties.id),
+      }
+    ]
+  }
 
   styleFunc = (feature) =>{
     console.log(feature.i.id)
