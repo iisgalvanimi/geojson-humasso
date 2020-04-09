@@ -23,18 +23,17 @@ export class AppComponent {
     console.log(this.geoJsonObject.features[0].geometry.coordinates);
   }
   ngOnInit() {
-    this.markers = [
-      {
-        lng: this.geoJsonObject.features[0].geometry.coordinates[0][0][0],
-        lat: this.geoJsonObject.features[0].geometry.coordinates[0][0][1],
-        label: String(this.geoJsonObject.features[0].properties.id),
-      },
-      {
-        lng: this.geoJsonObject.features[1].geometry.coordinates[0][0][0],
-        lat: this.geoJsonObject.features[1].geometry.coordinates[0][0][1],
-        label: String(this.geoJsonObject.features[1].properties.id),
-      }
-    ]
+    this.markers = []
+
+    for (let feature of  this.geoJsonObject.features) {
+      let lng = feature.geometry.coordinates[0][0][0];
+      let lat = feature.geometry.coordinates[0][0][1];
+
+      let id = String(this.geoJsonObject.features[0].properties.id);
+      let marker : Marker = new Marker(lat,lng,id);
+
+      this.markers.push(marker);
+    }
   }
 
   styleFunc = (feature) =>{
@@ -48,5 +47,7 @@ export class AppComponent {
       strokeWeight: 1
     });
   }
+
+
 
 }
