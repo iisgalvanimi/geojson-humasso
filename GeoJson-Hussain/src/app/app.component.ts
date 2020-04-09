@@ -20,7 +20,7 @@ export class AppComponent {
   constructor()
   {
     this.geoJsonObject = GEOJSON;
-    console.log(this.geoJsonObject.features);
+    console.log(this.geoJsonObject.features[0].geometry.coordinates);
   }
   ngOnInit() {
     this.markers = [
